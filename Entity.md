@@ -52,5 +52,3 @@
 - **exam**: `Exam` (ManyToOne)
 - **response**: `integer`
 - **score**: `integer`
-
-Test
