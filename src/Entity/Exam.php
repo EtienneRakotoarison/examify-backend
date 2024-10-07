@@ -19,9 +19,6 @@ class Exam
     private ?string $title = null;
 
     #[ORM\Column(nullable: true)]
-    private ?array $questions = null;
-
-    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
@@ -43,9 +40,16 @@ class Exam
     #[ORM\OneToMany(targetEntity: Answer::class, mappedBy: 'exam')]
     private Collection $answers;
 
+    /**
+     * @var Collection<int, Question>
+     */
+    #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'exam')]
+    private Collection $questions;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
+        $this->questions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -61,18 +65,6 @@ class Exam
     public function setTitle(?string $title): static
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getQuestions(): ?array
-    {
-        return $this->questions;
-    }
-
-    public function setQuestions(?array $questions): static
-    {
-        $this->questions = $questions;
 
         return $this;
     }
@@ -161,6 +153,36 @@ class Exam
             // set the owning side to null (unless already changed)
             if ($answer->getExam() === $this) {
                 $answer->setExam(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Question>
+     */
+    public function getQuestions(): Collection
+    {
+        return $this->questions;
+    }
+
+    public function addQuestion(Question $question): static
+    {
+        if (!$this->questions->contains($question)) {
+            $this->questions->add($question);
+            $question->setExam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): static
+    {
+        if ($this->questions->removeElement($question)) {
+            // set the owning side to null (unless already changed)
+            if ($question->getExam() === $this) {
+                $question->setExam(null);
             }
         }
 

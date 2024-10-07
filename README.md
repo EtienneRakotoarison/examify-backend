@@ -31,7 +31,6 @@
 
 - **id**: `integer` (auto-increment)
 - **title**: `string`
-- **questions**: `json` (tableau des questions)
 - **createdAt**: `datetime`
 - **availableFrom**: `datetime`
 - **availability**: `integer` (minutes)
@@ -44,6 +43,7 @@
 - **questionText**: `string`
 - **choices**: `json` (tableau de chaînes de caractères)
 - **correctAnswerIndex**: `integer`
+- **exam**: `Exam` (ManyToOne)
 
 ## <span style="color:maroon;">Answer</span>
 
@@ -52,3 +52,13 @@
 - **exam**: `Exam` (ManyToOne)
 - **response**: `integer`
 - **score**: `integer`
+
+SQL : 
+
+drop table answer;
+drop table exam;
+drop table question;
+drop table semester;
+drop table student;
+drop table subject;
+drop table teacher;

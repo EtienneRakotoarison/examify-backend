@@ -22,6 +22,10 @@ class Question
     #[ORM\Column(nullable: true)]
     private ?int $correctAnswerIndex = null;
 
+    #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Exam $exam = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +63,18 @@ class Question
     public function setCorrectAnswerIndex(?int $correctAnswerIndex): static
     {
         $this->correctAnswerIndex = $correctAnswerIndex;
+
+        return $this;
+    }
+
+    public function getExam(): ?Exam
+    {
+        return $this->exam;
+    }
+
+    public function setExam(?Exam $exam): static
+    {
+        $this->exam = $exam;
 
         return $this;
     }
