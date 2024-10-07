@@ -1,0 +1,27 @@
+Fonctionnalites :
+    ✔ Methode API pour faire le login teacher @done(24-10-07 10:59)
+    - Methode API pour avoir la liste des semestres
+
+Ecran :
+    - Login Teacher *
+    - Dashboard Teacher :
+        - Nombre des etudiants
+        - Nombre des matieres
+        - Nombre des einsegnants
+        - Les examens a venir avec compte a rebours
+    - Gestion d'etudiant :
+        - Ajout
+        - Modification
+        - Voir ses notes
+        - Suppression (update status deleted)
+    - Gestion d'examen
+        - Ajout
+        - Modification :
+            - Ajout/Creation multiple questions
+            - Suppression de question (update status deleted)
+    
+    - Login Student
+    - Dashboard Student :
+        - Les examens a venir avec compte a rebours
+            -> Commencer examen
+    - Voir les notes sur les examens faits
