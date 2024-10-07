@@ -45,7 +45,8 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 3; $i++) {
             $semester = new Semester();
             $semester->setName('Semester ' . ($i + 1));
-            $semester->setAcademicYear($faker->year . '/' . ($faker->year + 1));
+            $academicYear = $faker->year;
+            $semester->setAcademicYear($academicYear . '/' . ($academicYear + 1));
             $manager->persist($semester);
             $semesters[] = $semester;
         }
