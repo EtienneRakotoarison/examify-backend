@@ -23,6 +23,8 @@ class TeacherController extends AbstractController
     }
 
     /**
+     * Methode API pour faire le login teacher
+     * 
      * Example de test:
         {
             "email": "hahn.douglas@yahoo.com",
@@ -40,7 +42,6 @@ class TeacherController extends AbstractController
             return new JsonResponse(['message' => 'Email et mot de passe requis.'], Response::HTTP_BAD_REQUEST);
         }
         $teacher = $this->entityManager->getRepository(Teacher::class)->findOneBy(['email' => $email]);
-
         if (is_null($teacher) || md5($password) !== $teacher->getPassword()) {
             return new JsonResponse(['message' => 'Identifiants invalides.'], Response::HTTP_UNAUTHORIZED);
         }
